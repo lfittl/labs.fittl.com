@@ -1,8 +1,8 @@
 <html>
   <head>
     <title>pg_query</title>
-    <script src="https://cdn.rawgit.com/lfittl/pg_query_emscripten/f91c58d3d78cfce3e4432a413472be4d64695832/pg_query.js" type="text/javascript"></script>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+    <script src="https://cdn.rawgit.com/lfittl/pg_query_emscripten/00a9a786f7143969d996adae344447c4253e385d/pg_query.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   </head>
   <body>
     <div class="container">
@@ -29,8 +29,8 @@
       query = document.getElementById('query').value;
       result = Module.parse(query);
 
-      document.getElementById('output').innerHTML = result.parse_tree ? JSON.stringify(result.parse_tree, null, 2) : "";
-      document.getElementById('error').innerHTML = result.error || "";
+      document.getElementById('output').innerHTML = result.parse_tree.length > 0 ? JSON.stringify(result.parse_tree, null, 2) : "";
+      document.getElementById('error').innerHTML = result.error && result.error.message || "";
     }
     parseQuery();
     </script>
