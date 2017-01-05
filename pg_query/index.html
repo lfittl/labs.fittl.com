@@ -15,9 +15,11 @@
         <a href="https://github.com/lfittl/pg_query_go">Go</a> |
         <a href="https://github.com/lfittl/libpg_query">C</a> |
         <a href="https://github.com/lfittl/pg_query_emscripten">JS (Browser)</a> |
-        <a href="https://github.com/zhm/pg-query-parser">JS (Node)</a>
+        <a href="https://github.com/zhm/pg-query-parser">JS (Node)</a> |
+        <a href="https://github.com/alculquicondor/psqlparse">Python</a>
       </p>
       <textarea id="query" placeholder="Enter any valid SQL query and the parse tree will appear..." rows="4" onkeyup="parseQuery()">SELECT edit_this, it_updates FROM realtime</textarea>
+      <pre id="fingerprint"></pre>
       <pre id="error" style="color: red"></pre>
       <pre id="output"></pre>
     </div>
@@ -28,7 +30,9 @@
 
       query = document.getElementById('query').value;
       result = PgQuery.parse(query);
+      fingerprint = PgQuery.fingerprint(query).hexdigest;
 
+      document.getElementById('fingerprint').innerHTML = fingerprint;
       document.getElementById('output').innerHTML = result.parse_tree.length > 0 ? JSON.stringify(result.parse_tree, null, 2) : "";
       document.getElementById('error').innerHTML = result.error && result.error.message || "";
     }
